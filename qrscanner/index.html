@@ -57,11 +57,11 @@
 <body>
     <div>
         <h1>QR Scanner</h1>
-        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <div id="loadingMessage">카메라를 찾을 수 없습니다. 카메라를 활성화 시켜주세요!</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
-          <div id="outputMessage">No QR code detected.</div>
-          <div hidden><b>Data:</b> <span id="outputData"></span></div>
+          <div id="outputMessage">QR코드를 읽을 수 없습니다</div>
+          <div hidden><b>QR Code Data:</b> <span id="outputData"></span></div>
         </div>
     </div>
 
@@ -116,7 +116,8 @@
               outputData.parentElement.hidden = false;
               outputData.innerText = code.data;
 
-              return;
+            // 읽으면 종료
+            //   return;
             } else {
               outputMessage.hidden = false;
               outputData.parentElement.hidden = true;
