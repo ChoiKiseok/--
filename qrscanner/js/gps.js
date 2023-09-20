@@ -1,4 +1,9 @@
-var x = document.getElementById('gps');
+var x;
+
+window.onload = function() {
+    x = document.getElementById('gps');
+    getLocation();
+}
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -9,5 +14,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + "</br>Longitude: " +  position.coords.longitude;
+    console.log(position);
+    var gps_text = "<span>Latitude: " + position.coords.latitude + "<br>Longitude: " +  position.coords.longitude + "</span>";
+    console.log(gps_text);
+    x.innerHTML = gps_text;
 }
