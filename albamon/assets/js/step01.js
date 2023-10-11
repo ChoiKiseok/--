@@ -26,6 +26,7 @@ $( document ).ready(function() {
 });
 
 function qrScannerOn() {
+  var scanwrap = document.getElementById("scanwrap");
   var video = document.createElement("video");
   var canvasElement = document.getElementById("scanbox");
   var canvas = canvasElement.getContext("2d");
@@ -52,7 +53,7 @@ function qrScannerOn() {
   });
 
   function tick() {
-    // loadingMessage.innerText = "⌛ Loading video..."
+    scanwrap.style.background = 'none';
     loadingMessage.style.background = 'none';
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       loadingMessage.hidden = true;
