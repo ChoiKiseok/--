@@ -53,8 +53,8 @@ function qrScannerOn() {
   });
 
   function tick() {
-    scanwrap.style.background = 'none';
-    loadingMessage.style.background = 'none';
+    // scanwrap.style.background = 'none';
+    loadingMessage.hidden = true;
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       loadingMessage.hidden = true;
       canvasElement.hidden = false;
