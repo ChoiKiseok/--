@@ -53,7 +53,7 @@ function qrScannerOn() {
 
   function tick() {
     // loadingMessage.innerText = "⌛ Loading video..."
-    loadingMessage.style.background = 'white';
+    loadingMessage.style.background = 'none';
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       loadingMessage.hidden = true;
       canvasElement.hidden = false;
@@ -77,8 +77,9 @@ function qrScannerOn() {
         outputData.parentElement.hidden = false;
         outputData.innerText = code.data;
 
+        $('#kickId').val(code.data);
       // 읽으면 종료
-      //   return;
+        return;
       } else {
         outputMessage.hidden = false;
         outputData.parentElement.hidden = true;
