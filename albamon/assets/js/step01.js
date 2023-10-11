@@ -3,22 +3,22 @@ $( document ).ready(function() {
   var url = 'test.do';
 
   // UUID 생성받아서 input에 넣기
-  $.ajax({
-    type: 'get',
-    url: url,
-    dataType: 'json',
-    success: function(result) {
-      console.log(result);
 
-      document.getElementById('uuid').value = result;
-      
-    },
-    error: function error(request, status, _error) {
-      console.log("code: " + request.status);
-      console.log("message: " + request.responseText);
-      console.log("error: " + _error);
-    },
-  });
+  // $.ajax({
+  //   type: "get",
+  //   url: encodeURI(url),
+  //   dataType: "json",
+  //   async: false,
+  //   error: function error(request, status, _error) {
+  //     console.log("code: " + request.status);
+  //     console.log("message: " + request.responseText);
+  //     console.log("error: " + _error);
+  //   },
+  //   success: function success(result) {
+  //     console.log(result);
+  //     document.getElementById('uuid').value = result;
+  //   },
+  // });
   
 	// QR코드 스캐너 활성화
 	qrScannerOn();
@@ -27,7 +27,7 @@ $( document ).ready(function() {
 
 function qrScannerOn() {
   var video = document.createElement("video");
-  var canvasElement = document.getElementById("canvas");
+  var canvasElement = document.getElementById("scanbox");
   var canvas = canvasElement.getContext("2d");
   var loadingMessage = document.getElementById("can_box");
   var outputContainer = document.getElementById("output");
@@ -52,7 +52,8 @@ function qrScannerOn() {
   });
 
   function tick() {
-    loadingMessage.innerText = "⌛ Loading video..."
+    // loadingMessage.innerText = "⌛ Loading video..."
+    loadingMessage.style.background = 'white';
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       loadingMessage.hidden = true;
       canvasElement.hidden = false;
