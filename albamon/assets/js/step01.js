@@ -26,14 +26,10 @@ $( document ).ready(function() {
 });
 
 function qrScannerOn() {
-  var scanwrap = document.getElementById("scanwrap");
   var video = document.createElement("video");
   var canvasElement = document.getElementById("scanbox");
   var canvas = canvasElement.getContext("2d");
-  var loadingMessage = document.getElementById("can_box");
-  var outputContainer = document.getElementById("output");
-  var outputMessage = document.getElementById("outputMessage");
-  var outputData = document.getElementById("outputData");
+  var canBox = document.getElementById("can_box");
 
   function drawLine(begin, end, color) {
     canvas.beginPath();
@@ -54,11 +50,10 @@ function qrScannerOn() {
 
   function tick() {
     // scanwrap.style.background = 'none';
-    loadingMessage.hidden = true;
+    canBox.hidden = true;
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
-      loadingMessage.hidden = true;
+      canBox.hidden = true;
       canvasElement.hidden = false;
-      outputContainer.hidden = false;
 
       canvasElement.height = video.videoHeight * 0.9;
       canvasElement.width = video.videoWidth * 0.9;
@@ -74,11 +69,8 @@ function qrScannerOn() {
         drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
         drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
         drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-        outputMessage.hidden = true;
-        outputData.parentElement.hidden = false;
-        outputData.innerText = code.data;
 
-        $('#kickId').val(code.data);
+        readQrCodeData(code.data);
       // 읽으면 종료
         return;
       } else {
@@ -88,4 +80,11 @@ function qrScannerOn() {
     }
     requestAnimationFrame(tick);
   }
+}
+
+function readQrCodeData(data) {
+  var kickCompany = data.split('?')[0];
+  var kickId = data.split('?')[1].split('name')[1];
+
+  $('#kickId').val(kickId);
 }
