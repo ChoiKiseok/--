@@ -72,10 +72,8 @@ function qrScannerOn() {
 
         readQrCodeData(code.data);
       // 읽으면 종료
-        return;
+        //return;
       } else {
-        outputMessage.hidden = false;
-        outputData.parentElement.hidden = true;
       }
     }
     requestAnimationFrame(tick);
